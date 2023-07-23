@@ -1,8 +1,11 @@
 package com.blog.payloads;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.springframework.validation.annotation.Validated;
+
+import jakarta.validation.constraints.NotNull;
+
+
+
 
 public class UserDTO {
 	
@@ -13,9 +16,12 @@ public class UserDTO {
 
 	private String name;
 	
+
 	private String email;
 	
+	
 	private String password;
+	
 	
 	private String about;
 
@@ -60,13 +66,11 @@ public class UserDTO {
 	}
 
 	public UserDTO() {
-		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	public UserDTO(int id, String name, String email, String password, String about) {
-		super();
-		this.id = id;
+	public UserDTO(String name, String email, String password, String about) {
+	
 		this.name = name;
 		this.email = email;
 		this.password = password;

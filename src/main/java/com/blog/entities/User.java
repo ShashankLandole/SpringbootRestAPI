@@ -1,30 +1,21 @@
 package com.blog.entities;
 
-
-
-
-
-
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class User {
 	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="user_name",nullable = false,length = 100)
+	@Column(name="user_name",length = 100)
 	private String name;
 	
 	private String email;
@@ -73,9 +64,8 @@ public class User {
 		this.about = about;
 	}
 
-	public User(int id, String name, String email, String password, String about) {
-		super();
-		this.id = id;
+	public User(String name, String email, String password, String about) {
+		
 		this.name = name;
 		this.email = email;
 		this.password = password;
@@ -83,8 +73,7 @@ public class User {
 	}
 
 	public User() {
-		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	

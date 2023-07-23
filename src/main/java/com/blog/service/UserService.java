@@ -2,7 +2,10 @@ package com.blog.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.blog.payloads.UserDTO;
+
 
 public interface UserService {
 	
