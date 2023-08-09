@@ -1,6 +1,7 @@
 package com.blog.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -39,6 +40,10 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public CategoryDTO updateCategory(CategoryDTO categoryDTO, int categoryId) {
 		
+		
+		
+		
+		
 		Category category = this.categoryRepo.findById(categoryId).orElseThrow(()-> new ResourceNotFoundException("Category ","Category Id",categoryId));
 		
 		category.setCategoryTitle(categoryDTO.getCategoryTitle());
@@ -63,8 +68,6 @@ public class CategoryServiceImpl implements CategoryService {
 	public CategoryDTO getCategory(int categoryId) {
 		
 		Category category = this.categoryRepo.findById(categoryId).orElseThrow(()-> new ResourceNotFoundException("Category ","Category Id",categoryId));
-		
-		
 		
 		return this.modelMapper.map(category,CategoryDTO.class);
 	}

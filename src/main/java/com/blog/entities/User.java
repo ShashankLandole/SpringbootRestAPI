@@ -1,10 +1,15 @@
 package com.blog.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -23,6 +28,12 @@ public class User {
 	private String password;
 	
 	private String about;
+	
+	//one user can have many post
+	
+	@OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
+	private List<Post> posts = new ArrayList<>();
+	
 
 	public int getId() {
 		return id;
