@@ -9,6 +9,7 @@ import jakarta.persistence.ManyToOne;
 
 public class PostDTO {
 	
+	private int postId;
 	private String title;
 	private String content;
 	private String imageName;
@@ -18,6 +19,18 @@ public class PostDTO {
 	
 	
 	private UserDTO user;
+
+
+	
+	
+	public int getPostId() {
+		return postId;
+	}
+
+
+	public void setPostId(int postId) {
+		this.postId = postId;
+	}
 
 
 	public String getTitle() {

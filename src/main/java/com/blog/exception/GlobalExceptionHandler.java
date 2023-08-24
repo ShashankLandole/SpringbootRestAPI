@@ -20,6 +20,13 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<APIResponse>(apiResponse,HttpStatus.NOT_FOUND);
 	}
 	
+	@ExceptionHandler(SearchResultNotFound.class)
+	public ResponseEntity<APIResponse> searchResultNotFound(SearchResultNotFound ex){
+		String message = ex.getMessage();
+		APIResponse apiResponse = new APIResponse(message, false);
+		return new ResponseEntity<APIResponse>(apiResponse,HttpStatus.NOT_FOUND);
+		
+	}
 	
 	
 

@@ -4,18 +4,19 @@ import java.util.List;
 
 import com.blog.entities.Post;
 import com.blog.payloads.PostDTO;
+import com.blog.payloads.PostResponse;
 
 public interface PostService {
 	
 	PostDTO createPost(PostDTO postDto,int userId,int categoryId);
 	
-	Post updatePost(PostDTO postDto,int id);
+	PostDTO updatePost(PostDTO postDto,int id);
 	
 	void deletePost(int id);
 	
-	List<Post> getAllPost();
+	PostResponse getAllPost(int pageNumber,int pageSize,String sortBy,String sortDir);
 	
-	Post getPostById(int id);
+	PostDTO getPostById(int id);
 	
 	//get all post by category
 	List<PostDTO> getPostByCategory(int categoryId);
@@ -24,6 +25,6 @@ public interface PostService {
 	List<PostDTO> getPostByUser(int userId);
 	
 	//search any post
-	List<Post> searchPost(String keyword);
+	List<PostDTO> searchPost(String keyword);
 
 }
