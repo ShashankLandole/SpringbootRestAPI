@@ -1,9 +1,18 @@
 package com.blog.entities;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -11,11 +20,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class User {
+public class User  {
 	
 	
 	@Id
@@ -36,6 +46,10 @@ public class User {
 	
 	@OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
 	private List<Post> posts = new ArrayList<>();
+	
+	@ManyToMany
+	private Set<Role> roles = new HashSet<>();
+	
 	
 
 	public int getId() {
@@ -63,7 +77,7 @@ public class User {
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
@@ -77,6 +91,24 @@ public class User {
 	public void setAbout(String about) {
 		this.about = about;
 	}
+	
+	
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 
 	public User(String name, String email, String password, String about) {
 		
@@ -89,9 +121,17 @@ public class User {
 	public User() {
 		
 	}
+
+	
+
+	
+	
+
+
+}
 	
 	
 	
 	
 
-}
+

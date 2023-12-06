@@ -1,8 +1,11 @@
 package com.blog.payloads;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.blog.entities.Category;
+import com.blog.entities.Comment;
 import com.blog.entities.User;
 
 import jakarta.persistence.ManyToOne;
@@ -20,7 +23,7 @@ public class PostDTO {
 	
 	private UserDTO user;
 
-
+	private Set<CommentDTO> comments = new HashSet<>();
 	
 	
 	public int getPostId() {
@@ -90,6 +93,16 @@ public class PostDTO {
 
 	public void setUser(UserDTO user) {
 		this.user = user;
+	}
+
+
+	public Set<CommentDTO> getComments() {
+		return comments;
+	}
+
+
+	public void setComments(Set<CommentDTO> comments) {
+		this.comments = comments;
 	}
 
 

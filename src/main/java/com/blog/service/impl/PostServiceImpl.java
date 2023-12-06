@@ -54,6 +54,8 @@ public class PostServiceImpl implements PostService {
 		post.setAddedDate(new Date());
 		post.setUser(user);
 		post.setCategory(category);
+		
+		
 		Post savePost = postRepo.save(post);
 		return this.modelMapper.map(savePost, PostDTO.class);
 	}

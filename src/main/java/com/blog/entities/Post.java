@@ -2,11 +2,18 @@ package com.blog.entities;
 
 import java.util.Date;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.blog.payloads.CommentDTO;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Post {
@@ -18,6 +25,9 @@ public class Post {
 	private String content;
 	private String imageName;
 	private Date addedDate;
+	
+	@OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
+	private Set<Comment> comments = new HashSet<>();
 	
 	@ManyToOne
 	private Category category;
@@ -79,6 +89,16 @@ public class Post {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	
+
+	public Set<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
 	}
 
 	public Post(String title, String content, String imageName, Date addedDate, Category category,
