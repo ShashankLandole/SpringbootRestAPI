@@ -20,9 +20,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @SpringBootApplication
-public class BlogAppApisApplication  {
+public class BlogAppApisApplication implements CommandLineRunner {
 
-	
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(BlogAppApisApplication.class, args);
@@ -33,12 +34,10 @@ public class BlogAppApisApplication  {
 		return new ModelMapper();
 	}
 	
-	//https://www.baeldung.com/spring-deprecated-websecurityconfigureradapter 
-	
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().anyRequest().authenticated().and().httpBasic();
-		return http.build();
+
+	@Override
+	public void run(String... args) throws Exception {
+		System.out.println(this.encoder.encode("xyz"));
 		
 	}
 	
